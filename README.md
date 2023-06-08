@@ -1,39 +1,87 @@
 # DynamicCursesInput
 
-TODO: Delete this and the text below, and describe your gem
+DynamicCursesInput is a Ruby gem that provides a simple and intuitive way to handle user input in a Curses-based terminal user interface (TUI). It allows for dynamic input handling, including cursor movement and inline character addition and deletion.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dynamic_curses_input`. To experiment with that code, run `bin/console` for an interactive prompt.
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Documentation](#documentation)
+- [Dependencies](#dependencies)
+- [FAQs](#faqs)
+- [Troubleshooting](#troubleshooting)
+- [Contribution Guidelines](#contribution-guidelines)
+- [License](#license)
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+To install DynamicCursesInput, add the following line to your application's Gemfile:
 
-Install the gem and add to the application's Gemfile by executing:
+```ruby
+gem 'dynamic_curses_input'
+```
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+Then execute:
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+```bash
+$ bundle install
+```
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+Or install it yourself as:
+
+```bash
+$ gem install dynamic_curses_input
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+Here's a simple example of how to use DynamicCursesInput:
 
-## Development
+```ruby
+require "curses"
+require "dynamic_curses_input"
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+begin
+  Curses.init_screen
+  Curses.start_color
+  Curses.addstr("You should be able to use the left and right arrow keys to switch between characters in the line, and selectively edit them.\n")
+  Curses.addstr("Enter your name: ")
+  name = DCI.catch_input(true)
+  Curses.addstr("\nYou entered: #{name}")
+  Curses.getch
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+  # Log the output
+  logger.info("Name entered: #{name}")
+ensure
+  Curses.close_screen
+end
+```
 
-## Contributing
+In this example, `DCI.catch_input(true)` will capture user input until the Enter key is pressed, echoing the input to the screen.
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/dynamic_curses_input. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/dynamic_curses_input/blob/master/CODE_OF_CONDUCT.md).
+## Documentation
+
+Detailed documentation for each function is available in the [wiki](https://github.com/Pixelated-Studios/dynamic_curses_input/wiki).
+
+## Dependencies
+
+DynamicCursesInput depends on the [Curses](https://github.com/ruby/curses) gem.
+
+## FAQs
+
+- **Q: How do I handle special keys like arrow keys?**
+  - A: Special keys like arrow keys are automatically handled by DynamicCursesInput.
+
+## Troubleshooting
+
+If you encounter any issues while using DynamicCursesInput, please check the [issues](https://github.com/yourusername/dynamic_curses_input/issues) page. If your issue isn't listed, feel free to open a new issue.
+
+## Contribution Guidelines
+
+We welcome contributions from the community! Please read our [contribution guidelines](CONTRIBUTING.md) before submitting a pull request.
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+DynamicCursesInput is available under the [MIT License](LICENSE.txt).
 
-## Code of Conduct
-
-Everyone interacting in the DynamicCursesInput project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/dynamic_curses_input/blob/master/CODE_OF_CONDUCT.md).
+---
