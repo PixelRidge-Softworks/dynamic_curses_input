@@ -85,3 +85,7 @@ We welcome contributions from the community! Please read our [contribution guide
 DynamicCursesInput is available under the [MIT License](LICENSE.txt).
 
 ---
+
+### Note from the Developer: 
+
+There is a function in this gem that is not finished yet, it's for making asking questions in a Curses TUI easier from within the gem. This method shouldn't be used yet.
