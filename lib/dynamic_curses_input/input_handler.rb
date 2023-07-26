@@ -2,7 +2,7 @@
 
 # lib/dynamic_curses_input/input_handler.rb
 
-require "curses"
+require 'curses'
 
 module DynamicCursesInput
   # our main class for handling input
@@ -15,7 +15,7 @@ module DynamicCursesInput
     # Initialize instance variables and setup curses
     def initialize(echo)
       @echo = echo # Determines whether input should be echoed to the screen
-      @input = "" # Stores the input string
+      @input = '' # Stores the input string
       @cursor_pos = 0 # Stores the current cursor position
       @initial_y = Curses.stdscr.cury # Stores the initial y-coordinate of the cursor
       @initial_x = Curses.stdscr.curx # Stores the initial x-coordinate of the cursor
@@ -84,7 +84,7 @@ module DynamicCursesInput
     # Redraw the input string
     def redraw_input
       Curses.setpos(@initial_y, @initial_x) # Move cursor to initial position
-      Curses.addstr(" " * (Curses.cols - @initial_x)) # Clear line
+      Curses.addstr(' ' * (Curses.cols - @initial_x)) # Clear line
       Curses.setpos(@initial_y, @initial_x) # Move cursor to initial position
       Curses.addstr(@input) if @echo # Draw input string if @echo is true
       Curses.setpos(@initial_y, @initial_x + @cursor_pos) # Move cursor to current position
@@ -101,6 +101,11 @@ module DynamicCursesInput
     # Move cursor right
     def self.right(cursor_pos, length)
       cursor_pos == length ? cursor_pos : cursor_pos + 1
+    end
+
+    # Set cursor position
+    def self.set_position(y, x)
+      Curses.setpos(y, x)
     end
   end
 
